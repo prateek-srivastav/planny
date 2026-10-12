@@ -1,0 +1,18 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+data/*.sqlite*
+.pytest_cache/
+.ruff_cache/
+
+# editors and OS
+.DS_Store
+.idea/
+.vscode/
+
+# local-only config (keep .env.example tracked)
+.env.local
+.env.*.local
+.claude/settings.local.json
+.impeccable/

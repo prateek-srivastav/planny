@@ -1,0 +1,27 @@
+# SQLite (default):   docker compose up --build
+# Postgres instead:   docker compose --profile postgres up --build   (and set POSTGRES_URL below)
+services:
+  api:
+    build: .
+    ports: ["8000:8000"]
+    env_file: [.env]
+    environment:
+      SQLITE_PATH: /data/checkpoints.sqlite
+      # Uncomment to use Postgres instead of SQLite:
+      # POSTGRES_URL: postgresql://planner:planner@postgres:5432/planner
+    volumes:
+      - plan-data:/data
+
+  postgres:
+    profiles: ["postgres"]
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: planner
+      POSTGRES_PASSWORD: planner
+      POSTGRES_DB: planner
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+
+volumes:
+  plan-data:
+  pg-data:

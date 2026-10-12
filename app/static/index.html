@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Planny · Travel Planner</title>
+  <meta name="description" content="Plan a trip with an AI travel planner, then review and approve the itinerary.">
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Instrument+Sans:wght@400;500;600&display=swap">
+  <!-- Instrument Sans has no ₹ (U+20B9): load that one glyph from Schibsted Grotesk as its fallback. -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&text=%E2%82%B9&display=swap">
+  <link rel="stylesheet" href="/static/app.css?v=2">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#/" aria-label="Planny, new trip">
+      <span class="brand-mark" aria-hidden="true">P</span>
+      <span class="brand-name">Planny</span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <button type="button" class="link-button" id="open-plan">Open a plan</button>
+      <a class="btn secondary compact" href="#/" aria-label="New trip">+ <span class="new-trip-label">New trip</span></a>
+    </nav>
+  </header>
+
+  <main id="view" tabindex="-1" aria-live="polite"></main>
+
+  <dialog id="open-dialog" aria-labelledby="open-title">
+    <form method="dialog" class="dialog-body" id="open-form">
+      <p class="eyebrow">Continue a journey</p>
+      <h2 class="section-title" id="open-title">Open an existing plan</h2>
+      <div class="field">
+        <label class="label" for="open-id">Plan ID</label>
+        <input class="input" id="open-id" name="plan_id" autocomplete="off" required
+               pattern="[a-f0-9]{32}" placeholder="32-character plan ID">
+        <p class="hint" id="recent-plans"></p>
+      </div>
+      <div class="dialog-actions">
+        <button class="btn secondary" value="cancel" formnovalidate>Cancel</button>
+        <button class="btn" value="open">Open plan</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <script src="/static/app.js?v=2" defer></script>
+</body>
+</html>
